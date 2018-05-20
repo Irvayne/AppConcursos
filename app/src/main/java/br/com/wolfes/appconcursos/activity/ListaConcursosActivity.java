@@ -35,11 +35,6 @@ public class ListaConcursosActivity extends AppCompatActivity {
         Intent intent = getIntent();
         estado = (Estado) intent.getSerializableExtra("estado");
         //Log.e("Estado", estado.toString());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         Call<List<Concurso>> call = new RetrofitConfig().getConcursoService().listarConcursos(estado.getSigla());
         call.enqueue(new Callback<List<Concurso>>() {
             @Override
@@ -67,5 +62,11 @@ public class ListaConcursosActivity extends AppCompatActivity {
                 Toast.makeText(ListaConcursosActivity.this, "Problema na conexão com a internet!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }
